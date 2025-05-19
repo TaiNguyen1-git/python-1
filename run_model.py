@@ -90,17 +90,18 @@ class VehicleClassifier:
         return self.class_names[predicted.item()]
 
     def _heuristic_classify(self, img):
-        """Simple heuristic classification based on aspect ratio and size"""
+        """Improved heuristic classification based on aspect ratio, size and position"""
         h, w = img.shape[:2]
         aspect_ratio = w / h
         area = w * h
 
-        if aspect_ratio > 1.8:  # Very wide
-            return 'bus'
-        elif aspect_ratio < 0.8:  # Tall
-            return 'truck'
-        elif area < 10000:  # Small
+        # Xe máy thường nhỏ hơn và có tỷ lệ gần 1:1
+        if area < 20000 or (0.7 < aspect_ratio < 1.3 and area < 30000):
             return 'motorcycle'
+        elif aspect_ratio > 1.8:  # Xe bus thường rất dài
+            return 'bus'
+        elif aspect_ratio < 0.8 and area > 30000:  # Xe tải thường cao
+            return 'truck'
         else:
             return 'car'
 

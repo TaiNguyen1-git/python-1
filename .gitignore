@@ -1,0 +1,27 @@
+# Ignore large model files
+models/vehicle_classifier_checkpoint.pth
+models/vehicle_classifier_best.pth
+
+# Ignore output videos
+output.mp4
+*.mp4
+
+# Ignore Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore virtual environments
+venv/
+env/
+ENV/
+
+# Ignore dataset files
+dataset/
+
+# Ignore IDE files
+.vscode/
+.idea/
+
+# Ignore logs
+*.log
